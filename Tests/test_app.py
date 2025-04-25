@@ -57,7 +57,8 @@ class TestApp(unittest.TestCase):
         """
         response = self.app.get("/search/title/kaleidoscope")
         self.assertEqual(
-            b"Kaleidoscope by Danielle Steel (ISBN: 0440236924)<br>Kaleidoscope Song by Fox Benwell (ISBN: 1481477676)",
+            b"Kaleidoscope by Danielle Steel (ISBN: 0440236924)<br>"
+            b"Kaleidoscope Song by Fox Benwell (ISBN: 1481477676)",
             response.data,
         )
 
@@ -69,8 +70,15 @@ class TestApp(unittest.TestCase):
             None
         """
         response = self.app.get("/search/genre/lgbt")
+        # self.assertEqual(
+        #     b"Kapaemahu by Joe Wilson, Daniel Sousa, Hinaleimoana Wong-Kalu, Dean Hamer (ISBN: 0593530063)<br>Kaleidoscope Song by Fox Benwell (ISBN: 1481477676)<br>Kate in Waiting by Becky Albertalli (ISBN: 0062643835)",
+        #     response.data,
+        # )
         self.assertEqual(
-            b"Kapaemahu by Joe Wilson, Daniel Sousa, Hinaleimoana Wong-Kalu, Dean Hamer (ISBN: 0593530063)<br>Kaleidoscope Song by Fox Benwell (ISBN: 1481477676)<br>Kate in Waiting by Becky Albertalli (ISBN: 0062643835)",
+            b"Kapaemahu by Joe Wilson, Daniel Sousa, Hinaleimoana "
+            b"Wong-Kalu, Dean Hamer (ISBN: 0593530063)<br>"
+            b"Kaleidoscope Song by Fox Benwell (ISBN: 1481477676)<br>"
+            b"Kate in Waiting by Becky Albertalli (ISBN: 0062643835)",
             response.data,
         )
 
@@ -93,7 +101,8 @@ class TestApp(unittest.TestCase):
         """
         response = self.app.get("/not/a/real/page")
         self.assertEqual(
-            b'404: Page not found<br>To search for banned books, go to "/search/&lt;field&gt;/&lt;query&gt;". \
+            b"404: Page not found<br>To search for banned books, "
+            b'go to "/search/&lt;field&gt;/&lt;query&gt;". \
     The options for field are title, author, and genre.',
             response.data,
         )

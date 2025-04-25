@@ -40,11 +40,10 @@ def search(field, query):
                 "Invalid search field, options for field are title, author, or genre.",
             )
     return format_list_with_linebreak(output)
-    # return output
 
 
 @app.errorhandler(404)
-def generic_page_not_found(e):
+def generic_page_not_found(_):
     """404 endpoint for when a page is not found"""
     return f"404: Page not found<br>{USAGE}"
 
