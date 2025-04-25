@@ -6,13 +6,14 @@ from ProductionCode.search import search_author, search_genre, search_title
 
 app = Flask(__name__)
 
-usage = 'To search for banned books, go to "/search/&lt;field&gt;/&lt;query&gt;". \
+USAGE = 'To search for banned books, go to "/search/&lt;field&gt;/&lt;query&gt;". \
     The options for field are title, author, and genre.'
 
 
 @app.route("/")
 def homepage():
-    return usage
+    """The endpoint for the homepage,"""
+    return USAGE
 
 
 @app.route("/search/<field>/<query>", strict_slashes=False)
@@ -45,7 +46,7 @@ def search(field, query):
 @app.errorhandler(404)
 def generic_page_not_found(e):
     """404 endpoint for when a page is not found"""
-    return f"<h1>404: Page not found</h1> {usage}"
+    return f"404: Page not found<br>{USAGE}"
 
 
 def format_list_with_linebreak(list_of_strings):
