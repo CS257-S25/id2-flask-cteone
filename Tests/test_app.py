@@ -70,10 +70,6 @@ class TestApp(unittest.TestCase):
             None
         """
         response = self.app.get("/search/genre/lgbt")
-        # self.assertEqual(
-        #     b"Kapaemahu by Joe Wilson, Daniel Sousa, Hinaleimoana Wong-Kalu, Dean Hamer (ISBN: 0593530063)<br>Kaleidoscope Song by Fox Benwell (ISBN: 1481477676)<br>Kate in Waiting by Becky Albertalli (ISBN: 0062643835)",
-        #     response.data,
-        # )
         self.assertEqual(
             b"Kapaemahu by Joe Wilson, Daniel Sousa, Hinaleimoana "
             b"Wong-Kalu, Dean Hamer (ISBN: 0593530063)<br>"
