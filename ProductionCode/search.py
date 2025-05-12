@@ -2,6 +2,7 @@
 
 from ProductionCode.data import goodreads_data
 
+
 def print_book_short(book):
     """Pretty prints basic book info (title, author/s, isbn).
     Arguments:
@@ -11,10 +12,11 @@ def print_book_short(book):
     output = book["title"] + " by "
     output += ", ".join(book["authors"])
     if book["isbn"] is not None:
-        output += f" (ISBN: {book["isbn"]})"
+        output += f" (ISBN: {book['isbn']})"
     else:
         output += " (ISBN not found)"
     return output
+
 
 def fuzzy_match(data, query, partial):
     """Matches two strings regardless of case or whitespace.
@@ -26,6 +28,7 @@ def fuzzy_match(data, query, partial):
     if partial:
         return query.lower().strip() in data.lower().strip()
     return query.lower().strip() == data.lower().strip()
+
 
 def query_data(data, key, value, partial=False):
     """Queries key from the data for matching a specific value.
@@ -51,6 +54,7 @@ def query_data(data, key, value, partial=False):
                 matches.append(entry)
     return matches
 
+
 def search_title(title):
     """High level title search, to be called by the CLI."""
     # allow titles to partially match (ie "Harry Potter" matches "Harry Potter and the...")
@@ -59,6 +63,7 @@ def search_title(title):
     entries = map(print_book_short, entries)
     return entries
 
+
 def search_author(author):
     """High level author search, to be called by the CLI."""
     entries = query_data(goodreads_data, "authors", author)
@@ -66,12 +71,14 @@ def search_author(author):
     entries = map(print_book_short, entries)
     return entries
 
+
 def search_genre(genre):
     """High level genre search, to be called by the CLI."""
     entries = query_data(goodreads_data, "genres", genre)
     # for this query, only print short info
     entries = map(print_book_short, entries)
     return entries
+
 
 def main():
     """Main function for informal testing."""
@@ -83,5 +90,6 @@ def main():
     for result in search_results:
         print(result)
 
-if __name__  == "__main__":
+
+if __name__ == "__main__":
     main()
